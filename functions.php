@@ -1,4 +1,18 @@
 <?php
+function getAddress($street, $house)
+{
+    if (!empty($street) && !empty($house)) {
+        return $street . $house;
+    }
+    return '';
+
+}
+
+function getID($arr, $name_id)
+{
+    return $arr[0][$name_id];
+}
+
 function checkEmail($pdo, $email)
 {
     $query = $pdo->prepare("SELECT * FROM client WHERE `email`= :user_email");
@@ -16,18 +30,20 @@ function addNewClient($pdo, $name, $email)
 
 function getOrderId($pdo)
 {
-    $query = $pdo->prepare("SELECT order_id FROM client_order ORDER BY `id` DESC LIMIT 1");
+    $query = $pdo->prepare("SELECT order_id FROM `order` ORDER BY `id` DESC LIMIT 1");
     $query->execute();
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+    return $query->fetchAll(PDO::FETCH_ASSOC)[0]['order_id'];
 }
 
-function addOrder($pdo,$data){
-    $query = $pdo->prepare("INSERT INTO client_order (`client_id`,`order_id`,`street`,`house`,`payment`) VALUES(:client_id,:order_id,:user_street,:user_house,:user_payment)");
+function addOrder($pdo, $data)
+{
+    $query = $pdo->prepare("INSERT INTO `order` (`client_id`,`order_id`,`street`,`house`,`part`,`appt`,`floor`,`comment`,`payment`) VALUES(:client_id,:order_id,:user_street,:user_house,:user_part,:user_appt,:user_floor,:user_comment,:user_payment)");
     $query->execute($data);
 }
 
-function countOrder($pdo,$data){
-    $query = $pdo->prepare("SELECT COUNT(*) FROM client_order WHERE `client_id`= :client_id");
+function countOrder($pdo, $data)
+{
+    $query = $pdo->prepare("SELECT COUNT(*) FROM `order` WHERE `client_id`= :client_id");
     $query->execute(['client_id' => $data['client_id']]);
     return $query->fetchColumn();
 }

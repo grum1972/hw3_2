@@ -27,7 +27,7 @@ CREATE TABLE `client` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '''''',
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '''''',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,36 +36,40 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` (`id`, `name`, `email`) VALUES (15,'Elena','grum3@rambler.ru'),(16,'anna','grum1972@gmail.com');
+INSERT INTO `client` (`id`, `name`, `email`) VALUES (20,'Elena','grum3@rambler.ru'),(21,'Elena','grum1972@gmail.com');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `client_order`
+-- Table structure for table `order`
 --
 
-DROP TABLE IF EXISTS `client_order`;
+DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `client_order` (
+CREATE TABLE `order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `street` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `house` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `part` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `appt` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `floor` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payment` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `client_order`
+-- Dumping data for table `order`
 --
 
-LOCK TABLES `client_order` WRITE;
-/*!40000 ALTER TABLE `client_order` DISABLE KEYS */;
-INSERT INTO `client_order` (`id`, `client_id`, `order_id`, `street`, `house`, `payment`) VALUES (38,15,1,'Schorsa Build 50 Flat 24','12',0),(39,15,2,'Schorsa Build 50 Flat 24','12',0),(40,15,3,'Schorsa Build 50 Flat 24','12',0),(41,16,4,'Королева','25',1),(42,16,5,'Королева','25',1);
-/*!40000 ALTER TABLE `client_order` ENABLE KEYS */;
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` (`id`, `client_id`, `order_id`, `street`, `house`, `part`, `appt`, `floor`, `comment`, `payment`) VALUES (1,20,1,'12','12','12','12','12','12',0),(2,21,1,'Королева','253','125','12','1','Спасибо',1),(3,21,1,'Королева','253','125','12','1','Спасибо',1),(4,21,1,'Королева','253','125','12','1','Спасибо',1),(5,21,2,'Королева','253','125','12','1','Спасибо',1),(6,21,3,'Королева','253','125','12','1','Спасибо',1),(7,21,4,'Королева','253','125','12','1','Спасибо',1);
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -77,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-09 22:16:17
+-- Dump completed on 2020-06-12 12:16:05

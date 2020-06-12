@@ -489,15 +489,18 @@
                                 </label>
                                 <label class="order__form-block">
                                     <div class="order__form-label">Корпус</div>
-                                    <input class="order__form-input" name="part" type="text" placeholder="">
+                                    <input class="order__form-input" id="user_part" name="part" type="text"
+                                           placeholder="">
                                 </label>
                                 <label class="order__form-block">
                                     <div class="order__form-label">Квартира</div>
-                                    <input class="order__form-input" name="appt" type="text" placeholder="">
+                                    <input class="order__form-input" id="user_appt" name="appt" type="text"
+                                           placeholder="">
                                 </label>
                                 <label class="order__form-block">
                                     <div class="order__form-label">Этаж</div>
-                                    <input class="order__form-input" name="floor" type="text" placeholder="">
+                                    <input class="order__form-input" id="user_floor" name="floor" type="text"
+                                           placeholder="">
                                 </label>
                             </div>
                         </div>
@@ -506,7 +509,7 @@
                                 <label class="order__form-block">
                                     <div class="order__form-label">Комментарий</div>
                                     <textarea class="order__form-input order__form-input_textarea"
-                                              name="comment"></textarea>
+                                              id="user_comment" name="comment"></textarea>
                                 </label>
                             </div>
                             <div class="order__form-buttons">
@@ -647,16 +650,24 @@
         let userEmail = $('#user_email').val();
         let userStreet = $('#user_street').val();
         let userHouse = $('#user_house').val();
+        let userPart = $('#user_part').val();
+        let userAppt = $('#user_appt').val();
+        let userFloor = $('#user_floor').val();
+        let userComment = $('#user_comment').val();
         let userPayment = $("input:checked").val() === 'cash' ? 0 : 1;
-        $.get('pdo.php', {
+        $.get('order.php', {
             name: userName,
             email: userEmail,
             street: userStreet,
             house: userHouse,
             payment: userPayment,
+            part: userPart,
+            appt: userAppt,
+            floor: userFloor,
+            comment: userComment,
             ajax: 1
         }, function (resp) {
-            console.log(resp);
+            alert(resp);
         })
     }
 </script>
